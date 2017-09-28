@@ -4,7 +4,7 @@
   "description": "[AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) currently limits log events to 1 KiB. Log events larger than 1024 bytes,\r such as request and response bodies,will be truncated by [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) before submission to [CloudWatch](https://aws.amazon.com/cloudwatch/) Logs. Thus for large request bodies undergoing template transformation before being forwarded\r to the http integration backend, debugging a faulty transform becomes guesswork if the error location is within the truncated portion. This tool\r aims to provide the full transform output by mimicking how [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) transforms a JSON-formated request/response body with the Integration Request/Response Method's mapping template.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/drexler/velson-node/issues"
   },
-  "homepage": "https://github.com/drexler/velson-node#readme"
+  "homepage": "https://github.com/drexler/velson-node#readme",
+  "devDependencies": {
+    "ts-loader": "^2.3.7",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.31",
+    "commander": "^2.11.0"
+  }
 }
