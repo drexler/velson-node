@@ -1,0 +1,17 @@
+{
+    "integerProperty": 1,
+    "numberProperty": 2.6,
+    "nullProperty": null,
+    "stringProperty": "string",
+    "arrayProperty": [
+      {
+        "itemOne": 1,
+        "test": "here"
+      },
+      {
+        "itemOne": 2,
+        "test": "there"
+      }
+    ],
+    "booleanProperty": true
+}
