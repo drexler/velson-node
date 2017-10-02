@@ -1,10 +1,22 @@
 {
   "name": "velson",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "[AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) currently limits log events to 1 KiB. Log events larger than 1024 bytes,\r such as request and response bodies,will be truncated by [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) before submission to [CloudWatch](https://aws.amazon.com/cloudwatch/) Logs. Thus for large request bodies undergoing template transformation before being forwarded\r to the http integration backend, debugging a faulty transform becomes guesswork if the error location is within the truncated portion. This tool\r aims to provide the full transform output by mimicking how [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) transforms a JSON-formated request/response body with the Integration Request/Response Method's mapping template.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/specs/.*|\\.(test|spec))\\.(ts|tsx)$"
   },
   "repository": {
     "type": "git",
@@ -17,6 +29,10 @@
   },
   "homepage": "https://github.com/drexler/velson-node#readme",
   "devDependencies": {
+    "@types/jest": "^21.1.1",
+    "copy-webpack-plugin": "^4.1.0",
+    "jest": "^21.0.0",
+    "ts-jest": "^21.0.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3",
@@ -24,6 +40,9 @@
   },
   "dependencies": {
     "@types/node": "^8.0.31",
-    "commander": "^2.11.0"
+    "colors": "^1.1.2",
+    "commander": "^2.11.0",
+    "file-exists": "^5.0.0",
+    "java": "^0.9.0"
   }
 }
