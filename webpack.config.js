@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new copyWebpackPlugin([{
-      from: 'lib/velson-node-0.1.0.jar',
+      from: 'lib',
       to: 'dist/lib'
     }])
   ],

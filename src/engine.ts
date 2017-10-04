@@ -15,7 +15,8 @@ export class VelsonEngine {
   private mode: any;
 
   public constructor() {
-    java.classpath.push('./lib/velson-node-0.1.0.jar');
+    java.classpath.push('./lib/velocity-1.7-custom.jar');
+    java.classpath.push('./lib/velson-0.1.0.jar');
     this.internalEngine = java.import('com.drexler.velson.VelsonEngine');
     this.mode = java.import('com.drexler.velson.ResourceLocale');
   }
