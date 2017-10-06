@@ -20,6 +20,6 @@ if (program.template && program.request) {
   }
 } else {
   program.outputHelp((txt) => {
-    return colors.yellow(txt);
+    return colors.white(txt);
   });
 }
