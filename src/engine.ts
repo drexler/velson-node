@@ -2,11 +2,10 @@ import * as fileExists from 'file-exists';
 import * as java from 'java';
 
 /**
- * Represents an instance of the Velson Engine
+ * Class representing the Velson Engine
  *
  * @author drexler
  */
-
 export class VelsonEngine {
 
   private templatePath: string;
@@ -14,6 +13,9 @@ export class VelsonEngine {
   private internalEngine: any;
   private mode: any;
 
+  /**
+   * Creates an instance of the Velson Engine
+   */
   public constructor() {
     java.classpath.push('./lib/velocity-1.7-custom.jar');
     java.classpath.push('./lib/velson-0.1.0.jar');
@@ -21,6 +23,12 @@ export class VelsonEngine {
     this.mode = java.import('com.drexler.velson.ResourceLocale');
   }
 
+  /**
+   * Initializes the Velson Engine with its require parameters
+   * @param {string} templatePath - The path to the Velocity Template file.
+   * @param {string} requestFilePath - The path to the request/response JSON-formatted file
+   * @throws Will throw an error if the either provided path is invalid
+   */
   public initialize(templatePath: string, requestFilePath: string): void {
 
     if (fileExists.sync(templatePath) && fileExists.sync(requestFilePath)) {
@@ -37,6 +45,11 @@ export class VelsonEngine {
     }
   }
 
+  /**
+   * Performs a transformation
+   * @return {object} - A JSON-formatted output
+   * @throws Will throw an error if the generated output is malformed JSON
+   */
   public transform(): object {
     this.internalEngine = new this.internalEngine(this.mode.fileSystem, this.templatePath, this.requestFilePath);
     const output = this.internalEngine.transformSync();
