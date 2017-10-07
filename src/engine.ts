@@ -1,5 +1,6 @@
 import * as fileExists from 'file-exists';
 import * as java from 'java';
+import * as path from 'path';
 
 /**
  * Class representing the Velson Engine
@@ -17,8 +18,8 @@ export class VelsonEngine {
    * Creates an instance of the Velson Engine
    */
   public constructor() {
-    java.classpath.push('./lib/velocity-1.7-custom.jar');
-    java.classpath.push('./lib/velson-0.1.0.jar');
+    java.classpath.push(path.resolve(__dirname, '../jars/velocity-1.7-custom.jar'));
+    java.classpath.push(path.resolve(__dirname, '../jars/velson-0.1.0.jar '));
     this.internalEngine = java.import('com.drexler.velson.VelsonEngine');
     this.mode = java.import('com.drexler.velson.ResourceLocale');
   }
@@ -30,7 +31,6 @@ export class VelsonEngine {
    * @throws Will throw an error if the either provided path is invalid
    */
   public initialize(templatePath: string, requestFilePath: string): void {
-
     if (fileExists.sync(templatePath) && fileExists.sync(requestFilePath)) {
       this.templatePath = templatePath;
       this.requestFilePath = requestFilePath;
