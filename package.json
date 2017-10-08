@@ -25,7 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/drexler/velson-node.git"
   },
-  "author": "drexler",
+  "author": "Andrew Quartey",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/drexler/velson-node/issues"
