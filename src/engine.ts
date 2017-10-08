@@ -18,8 +18,9 @@ export class VelsonEngine {
    * Creates an instance of the Velson Engine
    */
   public constructor() {
-    java.classpath.push(path.resolve(__dirname, '../jars/velocity-1.7-custom.jar'));
-    java.classpath.push(path.resolve(__dirname, '../jars/velson-0.1.0.jar '));
+    const jarDirectory = path.resolve(__dirname, '../jars');
+    java.classpath.push(`${jarDirectory}/velocity-1.7-custom.jar`);
+    java.classpath.push(`${jarDirectory}/velson-0.1.0.jar`);
     this.internalEngine = java.import('com.drexler.velson.VelsonEngine');
     this.mode = java.import('com.drexler.velson.ResourceLocale');
   }
