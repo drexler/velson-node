@@ -24,7 +24,9 @@ Built-in Functions | Description | Supported |
 
 
 ##### Prerequisite
-[Java 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)+.
+- [Java 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [Node 6](https://nodejs.org/en/blog/release/v6.0.0/)+
+
 
 ##### Usage
 Velson provides both a command line interface to allow for local transforms within the terminal
@@ -69,7 +71,56 @@ $ velson
     -r, --request [value]   Path to request JSON file. (required)
     -h, --help              output usage information
 ```
-*Example:*
 ```shell
-$ velson -t template.vm -r request.json
+$ velson -t ./template.vm -r ./request.json
+```
+*template.vm*
+```velocity
+#set($source = $input.path('$'))
+{
+  "source": {
+    "integerProperty": $source.integerProperty,
+    "numberProperty": $source.numberProperty,
+    "nullPropertyInQuotes": "$source.nullProperty",
+    "stringProperty": "$source.stringProperty",
+    "arrayProperty": $source.arrayProperty,
+    "arrayPropertySize": $source.arrayProperty.size(),
+    "booleanProperty": $source.booleanProperty,
+    "missingProperty": "$source.missingProperty"
+  },
+  "input-json": {
+    "integerPropertyViaJson": $input.json('$.integerProperty'),
+    "numberPropertyViaJson": $input.json('$.numberProperty'),
+    "nullPropertyViaJson": $input.json('$.nullProperty'),
+    "stringPropertyViaJson": $input.json('$.stringProperty'),
+    "arrayPropertyViaJson": $input.json('$.arrayProperty'),
+    "arrayPropertyTestViaJson": $input.json('$.arrayProperty[0].test'),
+    "booleanPropertyViaJson": $input.json('$.booleanProperty'),
+    "missingPropertyViaJson": $input.json('$.missingProperty')
+  },
+  "util": {
+    "base64EncodedStringProperty": "$util.base64Encode($source.stringProperty)",
+    "originalStringPropertyDecoded": "$util.base64Decode($util.base64Encode($source.stringProperty))"
+  }
+}
+```
+*request.json*
+```json
+{
+    "integerProperty": 1,
+    "numberProperty": 2.6,
+    "nullProperty": null,
+    "stringProperty": "string",
+    "arrayProperty": [
+      {
+        "itemOne": 1,
+        "test": "here"
+      },
+      {
+        "itemOne": 2,
+        "test": "there"
+      }
+    ],
+    "booleanProperty": true
+}
 ```
