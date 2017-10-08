@@ -2,6 +2,7 @@ var copyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
+var shell = require('shelljs');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -13,10 +14,18 @@ fs.readdirSync('node_modules')
   });
 
 module.exports = {
-  entry: './src/index.ts',
+  context: path.resolve(__dirname),
+  node: {
+    __dirname: false
+  },
+  entry: {
+    index: './src/engine.ts',
+    velson: './src/index.ts'
+  },
   output: {
     libraryTarget: 'commonjs',
-    filename: './dist/velson.js'
+    filename: '[name].js',
+    path: __dirname + '/dist'
   },
   target: 'node',
   resolve: {
@@ -29,10 +38,15 @@ module.exports = {
     }]
   },
   plugins: [
-    new copyWebpackPlugin([{
-      from: 'lib',
-      to: 'dist/lib'
-    }])
+    function() {
+      this.plugin('done', () => {
+        shell
+          .echo('#!/usr/bin/env node\n')
+          .cat(`${__dirname}/dist/velson.js`)
+          .to(`${__dirname}/dist/velson.js`)
+        shell.chmod(755, `${__dirname}/dist/velson.js`)
+      })
+    }
   ],
   externals: nodeModules
 }

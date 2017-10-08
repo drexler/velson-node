@@ -1,19 +1,27 @@
 #setup environment
-language: node_js
-node_js:
-  - "7"
+language: java
+sudo: true
 
-# build results
+jdk:
+  - oraclejdk8
+  - oraclejdk7
+
+env:
+  - NODE_VERSION=7 CC=clang CXX=clang++
+  - NODE_VERSION=6 CC=clang CXX=clang++
+
+before_install:
+  - nvm install $NODE_VERSION
+  - node --version
+  - npm  -v
+
+before_script:
+  - echo $JAVA_HOME
+  - java -version
+  - npm install
+
+script:
+  - npm run build && npm test
+
 notifications:
-    email: false
-
-# target OS
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
-
-# build && run tests
-before_script: npm install
-script: 'npm run build && npm test'
+  email: false

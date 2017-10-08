@@ -1,0 +1,10 @@
+node_modules
+.gitignore
+.git
+/test
+/src
+/webpack.config.js
+.travis.yml
+.editorconfig
+tsconfig.json
+tslint.json
