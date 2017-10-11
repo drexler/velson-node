@@ -4,7 +4,7 @@ import { VelsonEngine } from './engine';
 import { VelsonError, ErrorType } from './error';
 
 program
-  .version('0.1.0')
+  .version('0.1.3')
   .option('-t, --template [value]', 'Path to the Velocity template mapping file. (required)')
   .option('-r, --request [value]', 'Path to request JSON file. (required)')
   .parse(process.argv);

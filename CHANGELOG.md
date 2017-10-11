@@ -1,5 +1,11 @@
 ### Next (Roadmap)
 
+### 0.1.3
+- Fix returned version information from CLI
+
+### 0.1.2
+- ReadMe Update
+
 ### 0.1.1
 - Fix error handling and highlighting
 
