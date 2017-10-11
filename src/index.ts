@@ -1,6 +1,7 @@
-import * as colors from 'colors';
+import * as chalk from 'chalk';
 import * as program from 'commander';
-import {VelsonEngine} from './engine';
+import { VelsonEngine } from './engine';
+import { VelsonError, ErrorType } from './error';
 
 program
   .version('0.1.0')
@@ -13,12 +14,33 @@ if (program.template && program.request) {
   try {
     engine.initialize(program.template, program.request);
     const transformedOutput = engine.transform();
-    console.log(colors.green(JSON.stringify(transformedOutput, null, 2)));
-  } catch (error) {
-    console.log(error.message);
+    console.log(chalk.greenBright(JSON.stringify(transformedOutput, null, 2)));
+  } catch (err) {
+    const error = new VelsonError(err.cause.getMessageSync());
+    printErrorMessage(error);
   }
 } else {
   program.outputHelp((txt) => {
-    return colors.white(txt);
+    return chalk.white(txt);
+  });
+}
+
+function printErrorMessage(error: VelsonError): void {
+  if (error.type === ErrorType.Template || error.type === ErrorType.Unknown) {
+    console.log(chalk.redBright(error.body));
+    return;
+  }
+
+  const highlightLine = error.lineNumber + 2;
+  const lines = error.body.split('\n');
+
+  let count = 1;
+  lines.forEach((line) => {
+    if (count !== highlightLine) {
+      console.log(chalk.redBright(line));
+    } else {
+      console.log(chalk.red.bgCyanBright(line));
+    }
+    count += 1;
   });
 }
