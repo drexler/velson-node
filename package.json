@@ -1,6 +1,6 @@
 {
   "name": "velson",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple Node package imitating AWS transformation of JSON using Velocity templates.",
   "author": "Andrew Quartey",
   "keywords": [
@@ -42,7 +42,6 @@
   "homepage": "https://github.com/drexler/velson-node#readme",
   "devDependencies": {
     "@types/jest": "^21.1.1",
-    "copy-webpack-plugin": "^4.1.0",
     "jest": "^21.0.0",
     "ts-jest": "^21.0.1",
     "ts-loader": "^2.3.7",
@@ -52,10 +51,11 @@
   },
   "dependencies": {
     "@types/node": "^8.0.31",
-    "colors": "^1.1.2",
+    "chalk": "^2.1.0",
     "commander": "^2.11.0",
     "file-exists": "^5.0.0",
     "java": "^0.9.0",
+    "save": "^2.3.1",
     "shelljs": "^0.7.8"
   }
 }
