@@ -1,5 +1,5 @@
 ### Velocity-JSON Transformer
-[![Build Status](https://travis-ci.org/drexler/velson-node.svg?branch=master)](https://travis-ci.org/drexler/velson-node.svg?branch=master)
+[![npm version](https://badge.fury.io/js/velson.svg)](https://badge.fury.io/js/velson)[![Build Status](https://travis-ci.org/drexler/velson-node.svg?branch=master)](https://travis-ci.org/drexler/velson-node.svg?branch=master)
 
 [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) currently limits log events to 1 KiB. Log events larger than 1024 bytes,
 such as request and response bodies,will be truncated by [AWS API Gateway](https://aws.amazon.com/documentation/apigateway/) before submission to [CloudWatch](https://aws.amazon.com/cloudwatch/) Logs. Thus for large request bodies undergoing template transformation before being forwarded
