@@ -1,10 +1,14 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';  // instead of import * chalk from 'chalk' due to TS definition file issues.
+import * as fs from 'fs';
+import * as path from 'path';
 import * as program from 'commander';
 import { VelsonEngine } from './engine';
 import { VelsonError, ErrorType } from './error';
 
+const packageInfo = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json' )).toString());
+
 program
-  .version('0.1.3')
+  .version(packageInfo.version)
   .option('-t, --template [value]', 'Path to the Velocity template mapping file. (required)')
   .option('-r, --request [value]', 'Path to request JSON file. (required)')
   .parse(process.argv);
