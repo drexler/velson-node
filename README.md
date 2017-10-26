@@ -35,7 +35,7 @@ and an API for embedding within your programs, whichever is most convenient.
 
 ###### Installation
 ```shell
-$ npm install save velson
+$ npm install --save velson
 ```
 
 ```javascript
@@ -56,7 +56,7 @@ try {
 
 ###### Using Velson CLI
 ```shell
-$ npm install [-g] velson
+$ npm install -g velson
 ```
 
 ```shell
